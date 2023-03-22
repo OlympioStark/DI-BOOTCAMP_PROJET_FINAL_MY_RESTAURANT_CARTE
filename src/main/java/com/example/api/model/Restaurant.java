@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -42,6 +45,11 @@ public class Restaurant {
 	public void setLocalisation(String localisation) {
 		this.localisation = localisation;
 	}
+	
+	@ManyToOne()
+	@MapsId("tableId") 
+	@JoinColumn(name="table_id") 
+	private Tables tableRestaurant;
 	
 	
 

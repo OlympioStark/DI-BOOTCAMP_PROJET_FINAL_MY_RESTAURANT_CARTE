@@ -22,12 +22,20 @@ import com.example.api.repository.CustomerRepository;
 
 
 @RestController
-@RequestMapping("/api/mrc")
+@RequestMapping("/api/mrc/cust")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class CustomerController {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+//	@GetMapping("/customer/{login}")
+//    public ResponseEntity<Customer> loginCustomer(@PathVariable String login) {
+//   
+//        Customer customer = customerRepository.findByLogin(login)
+//        		.orElseThrow(() -> new ResourceNotFoundException("Customer not exist with login : "+ login));
+//        return ResponseEntity.ok(customer);
+//	}
 	
 	//get all customer REST api
 	@GetMapping("/customer")
@@ -58,6 +66,7 @@ public class CustomerController {
 		customer.setLastName(customerDetails.getLastName());
 		customer.setFirstName(customerDetails.getFirstName());
 		customer.setAddressNumber(customerDetails.getAddressNumber());
+		customer.setCustLogin(customerDetails.getCustLogin());
 		customer.setEmail(customerDetails.getEmail());
 		customer.setPassword(customerDetails.getPassword());
 		

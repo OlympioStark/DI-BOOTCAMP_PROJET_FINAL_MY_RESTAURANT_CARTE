@@ -21,7 +21,7 @@ import com.example.api.model.Invitation;
 import com.example.api.repository.InvitationRepository;
 
 @RestController
-@RequestMapping("/api/mrc")
+@RequestMapping("/api/mrc/inv")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class InvitationController {
 	

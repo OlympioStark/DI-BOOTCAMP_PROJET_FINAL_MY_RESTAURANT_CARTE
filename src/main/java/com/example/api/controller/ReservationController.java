@@ -21,7 +21,7 @@ import com.example.api.model.Reservation;
 import com.example.api.repository.ReservationRepository;
 
 @RestController
-@RequestMapping("/api/mrc")
+@RequestMapping("/api/mrc/reserv")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class ReservationController {
 	
@@ -52,9 +52,11 @@ public class ReservationController {
 	@PutMapping("/reservation/{id}")
 	public ResponseEntity<Reservation> updateReservation(@PathVariable Long id,@RequestBody Reservation reservationDetails) {
 		Reservation reservation = reservationRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Carte not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Reservation not exist with id : "+ id));
 		
+		reservation.setReservationDate(reservationDetails.getReservationDate());
 		reservation.setTimeReservation(reservationDetails.getTimeReservation());
+		reservation.setStatus(reservationDetails.isStatus());
 		
 		Reservation updateReservation = reservationRepository.save(reservation);
 		return ResponseEntity.ok(updateReservation);
@@ -64,7 +66,7 @@ public class ReservationController {
 	@DeleteMapping("/reservation/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteReservation(@PathVariable Long id) {
 		Reservation reservation = reservationRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Carte not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Reservation not exist with id : "+ id));
 		
 		reservationRepository.delete(reservation);
 		Map<String, Boolean> response = new HashMap<>();

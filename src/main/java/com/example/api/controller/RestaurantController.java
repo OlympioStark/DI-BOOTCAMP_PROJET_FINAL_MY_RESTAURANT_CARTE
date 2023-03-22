@@ -21,7 +21,7 @@ import com.example.api.model.Restaurant;
 import com.example.api.repository.RestaurantRepository;
 
 @RestController
-@RequestMapping("/api/mrc")
+@RequestMapping("/api/mrc/restau")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class RestaurantController {
 
@@ -44,7 +44,7 @@ public class RestaurantController {
 	@GetMapping("/restaurant/{id}")
 	public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id) {
 		Restaurant restaurant = restaurantRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Restaurant not exist with id : "+ id));
 		return ResponseEntity.ok(restaurant);
 	}
 	
@@ -52,7 +52,7 @@ public class RestaurantController {
 	@PutMapping("/restaurant/{id}")
 	public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id,@RequestBody Restaurant restaurantDetails) {
 		Restaurant restaurant = restaurantRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Restaurant not exist with id : "+ id));
 		
 		restaurant.setLibRestaurant(restaurantDetails.getLibRestaurant());
 		restaurant.setLocalisation(restaurantDetails.getLocalisation());
@@ -65,7 +65,7 @@ public class RestaurantController {
 	@DeleteMapping("/restaurant/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteRestaurant(@PathVariable Long id) {
 		Restaurant restaurant = restaurantRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Customer not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Restaurant not exist with id : "+ id));
 		
 		restaurantRepository.delete(restaurant);
 		Map<String, Boolean> response = new HashMap<>();

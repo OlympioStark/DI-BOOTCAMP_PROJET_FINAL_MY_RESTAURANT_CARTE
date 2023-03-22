@@ -1,5 +1,9 @@
 package com.example.api.model;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,8 +26,11 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="reservation_id")
 	private long reservationId;
+	@JsonFormat(pattern="yyyy-MM-dd")
+    private Date reservationDate;
 	@Column(name = "reservation_time")
 	private String timeReservation;
+	private boolean status = true;
 	
 	public long getReservationId() {
 		return reservationId;
@@ -33,6 +40,14 @@ public class Reservation {
 		this.reservationId = reservationId;
 	}
 	
+	public Date getReservationDate() {
+		return reservationDate;
+	}
+
+	public void setReservationDate(Date reservationDate) {
+		this.reservationDate = reservationDate;
+	}
+
 	public String getTimeReservation() {
 		return timeReservation;
 	}
@@ -41,14 +56,29 @@ public class Reservation {
 		this.timeReservation = timeReservation;
 	}
 	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	@ManyToOne()
+	@MapsId("restaurantId") 
+	@JoinColumn(name="restaurant_id") 
+	private Restaurant restaurantReserved;
+	
+	@ManyToOne()
+	@MapsId("tableId") 
+	@JoinColumn(name="table_id") 
+	private Tables tableReserved;
+	 
+	@ManyToOne()
+	@MapsId("foodId") 
+	@JoinColumn(name="food_id") 
+	private Food foodReserved;
 	
 	
-	/*
-	 * @ManyToOne()
-	 * 
-	 * @MapsId("tableId")
-	 * 
-	 * @JoinColumn(name="table_id") private Tables table;
-	 */
 
 }

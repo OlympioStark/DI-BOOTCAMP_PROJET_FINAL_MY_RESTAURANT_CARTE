@@ -22,7 +22,7 @@ import com.example.api.repository.FoodRepository;
 
 
 @RestController
-@RequestMapping("/api/mrc")
+@RequestMapping("/api/mrc/fo")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class FoodController {
 	

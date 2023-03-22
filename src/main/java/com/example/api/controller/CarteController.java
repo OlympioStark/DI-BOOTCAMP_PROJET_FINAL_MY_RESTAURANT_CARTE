@@ -21,7 +21,7 @@ import com.example.api.model.Carte;
 import com.example.api.repository.CarteRepository;
 
 @RestController
-@RequestMapping("/api/mrc")
+@RequestMapping("/api/mrc/cart")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class CarteController {
 	

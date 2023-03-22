@@ -5,12 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -39,14 +35,5 @@ public class Carte {
 		this.libCarte = libCarte;
 	}
 	
-	
-	
-	/*
-	 * @ManyToOne()
-	 * 
-	 * @MapsId("foodId")
-	 * 
-	 * @JoinColumn(name="food_id") private Food food;
-	 */
 
 }

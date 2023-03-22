@@ -21,7 +21,7 @@ import com.example.api.model.Observation;
 import com.example.api.repository.ObservationRepository;
 
 @RestController
-@RequestMapping("/api/mrc")
+@RequestMapping("/api/mrc/obs")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class ObservationController {
 	
@@ -64,7 +64,7 @@ public class ObservationController {
 	@DeleteMapping("/observation/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteObservation(@PathVariable Long id) {
 		Observation observation = observationRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Food not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Observation not exist with id : "+ id));
 		
 		observationRepository.delete(observation);
 		Map<String, Boolean> response = new HashMap<>();

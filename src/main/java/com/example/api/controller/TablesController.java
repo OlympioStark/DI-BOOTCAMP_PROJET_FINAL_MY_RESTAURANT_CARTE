@@ -21,7 +21,7 @@ import com.example.api.model.Tables;
 import com.example.api.repository.TablesRepository;
 
 @RestController
-@RequestMapping("/api/mrc")
+@RequestMapping("/api/mrc/tab")
 @CrossOrigin(allowedHeaders = "*", origins = "*")
 public class TablesController {
 	
@@ -44,7 +44,7 @@ public class TablesController {
 	@GetMapping("/tables/{id}")
 	public ResponseEntity<Tables> getTables(@PathVariable Long id) {
 		Tables tables = tablesRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Tables not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Table not exist with id : "+ id));
 		return ResponseEntity.ok(tables);
 	}
 	
@@ -52,7 +52,7 @@ public class TablesController {
 	@PutMapping("/tables/{id}")
 	public ResponseEntity<Tables> updateTables(@PathVariable Long id,@RequestBody Tables tablesDetails) {
 		Tables tables = tablesRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Tables not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Table not exist with id : "+ id));
 		
 		tables.setNumTable(tablesDetails.getNumTable());
 		tables.setNbPlaces(tablesDetails.getNbPlaces());
@@ -66,7 +66,7 @@ public class TablesController {
 	@DeleteMapping("/tables/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteTables(@PathVariable Long id) {
 		Tables tables = tablesRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Tables not exist with id : "+ id));
+				.orElseThrow(() -> new ResourceNotFoundException("Table not exist with id : "+ id));
 		
 		tablesRepository.delete(tables);
 		Map<String, Boolean> response = new HashMap<>();

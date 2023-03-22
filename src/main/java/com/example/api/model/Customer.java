@@ -28,6 +28,8 @@ public class Customer {
 	private String firstName;
 	@Column(name = "address_number")
 	private String addressNumber;
+	@Column(name = "customer_login")
+	private String custLogin;
 	@Column(name = "email")
 	private String email;
 	@Column(name = "password")
@@ -57,6 +59,12 @@ public class Customer {
 	public void setAddressNumber(String addressNumber) {
 		this.addressNumber = addressNumber;
 	}
+	public String getCustLogin() {
+		return custLogin;
+	}
+	public void setCustLogin(String custLogin) {
+		this.custLogin = custLogin;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -71,20 +79,12 @@ public class Customer {
 	}
 	
 	
+	@ManyToOne() 
+	@MapsId("reservationId")
+	@JoinColumn(name="reservation_id")
+	private Reservation reservationCustomer;
+
 	
-	
-	/*
-	 * @ManyToOne()
-	 * 
-	 * @MapsId("reservationId")
-	 * 
-	 * @JoinColumn(name="reservation_id") private Reservation reservation;
-	 * 
-	 * @ManyToOne()
-	 * 
-	 * @MapsId("invitationId")
-	 * 
-	 * @JoinColumn(name="invitation_id") private Invitation invitation;
-	 */
+	 
 
 }
